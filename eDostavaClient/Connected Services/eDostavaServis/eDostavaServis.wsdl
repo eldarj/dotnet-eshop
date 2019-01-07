@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetRestoraniByBlok">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="blokId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRestoraniByBlokResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRestoraniByBlokResult" type="tns:ArrayOfRestoran" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRestoran">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Restoran" nillable="true" type="tns:Restoran" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Restoran">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Naziv" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prezime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Blok" type="tns:Blok" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Blok">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Naziv" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRestoranByNaziv">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="naziv" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRestoranByNazivResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRestoranByNazivResult" type="tns:ArrayOfRestoran" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRestorani">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRestoraniResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRestoraniResult" type="tns:ArrayOfRestoran" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBlokovi">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBlokoviResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBlokoviResult" type="tns:ArrayOfBlok" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBlok">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Blok" nillable="true" type="tns:Blok" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetRestoraniByBlokSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRestoraniByBlok" />
+  </wsdl:message>
+  <wsdl:message name="GetRestoraniByBlokSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRestoraniByBlokResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRestoranByNazivSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRestoranByNaziv" />
+  </wsdl:message>
+  <wsdl:message name="GetRestoranByNazivSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRestoranByNazivResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRestoraniSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRestorani" />
+  </wsdl:message>
+  <wsdl:message name="GetRestoraniSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRestoraniResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBlokoviSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBlokovi" />
+  </wsdl:message>
+  <wsdl:message name="GetBlokoviSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBlokoviResponse" />
+  </wsdl:message>
+  <wsdl:portType name="eDostavaServisSoap">
+    <wsdl:operation name="GetRestoraniByBlok">
+      <wsdl:input message="tns:GetRestoraniByBlokSoapIn" />
+      <wsdl:output message="tns:GetRestoraniByBlokSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRestoranByNaziv">
+      <wsdl:input message="tns:GetRestoranByNazivSoapIn" />
+      <wsdl:output message="tns:GetRestoranByNazivSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRestorani">
+      <wsdl:input message="tns:GetRestoraniSoapIn" />
+      <wsdl:output message="tns:GetRestoraniSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBlokovi">
+      <wsdl:input message="tns:GetBlokoviSoapIn" />
+      <wsdl:output message="tns:GetBlokoviSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="eDostavaServisSoap" type="tns:eDostavaServisSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRestoraniByBlok">
+      <soap:operation soapAction="http://tempuri.org/GetRestoraniByBlok" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRestoranByNaziv">
+      <soap:operation soapAction="http://tempuri.org/GetRestoranByNaziv" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRestorani">
+      <soap:operation soapAction="http://tempuri.org/GetRestorani" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBlokovi">
+      <soap:operation soapAction="http://tempuri.org/GetBlokovi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="eDostavaServisSoap12" type="tns:eDostavaServisSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRestoraniByBlok">
+      <soap12:operation soapAction="http://tempuri.org/GetRestoraniByBlok" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRestoranByNaziv">
+      <soap12:operation soapAction="http://tempuri.org/GetRestoranByNaziv" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRestorani">
+      <soap12:operation soapAction="http://tempuri.org/GetRestorani" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBlokovi">
+      <soap12:operation soapAction="http://tempuri.org/GetBlokovi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="eDostavaServis">
+    <wsdl:port name="eDostavaServisSoap" binding="tns:eDostavaServisSoap">
+      <soap:address location="http://localhost:64428/eDostavaServis.asmx" />
+    </wsdl:port>
+    <wsdl:port name="eDostavaServisSoap12" binding="tns:eDostavaServisSoap12">
+      <soap12:address location="http://localhost:64428/eDostavaServis.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
